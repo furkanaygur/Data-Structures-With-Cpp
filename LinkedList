@@ -1,0 +1,83 @@
+#include<iostream>
+using namespace std;
+
+class Eleman{
+	public:
+		int sayi;
+		Eleman *next;
+};
+class Liste {
+	private:
+		Eleman *ilk;
+	public:
+		Liste()
+		{
+			ilk=NULL;
+		}
+		bool bosMu();
+		void basaEkle(int);
+		void sonaEkle(int);
+		void yazdir();
+};
+	
+bool Liste::bosMu()
+{
+	if(ilk==NULL)
+		return true;
+	return false;
+}
+void Liste::basaEkle(int sayi){
+	Eleman *b = new Eleman;
+	b->sayi=sayi;
+	if(bosMu())
+		{
+		
+			b->next=NULL;
+			ilk=b;
+		}
+	else
+		{
+			b->next = ilk;
+			ilk=b;
+		}
+}
+void Liste::sonaEkle(int sayi){
+	Eleman *s = new Eleman;
+	s->sayi=sayi;
+	s->next=NULL;
+	if(bosMu())
+		ilk=s;
+	else{
+		Eleman *gecici;
+		gecici=ilk;
+		while(gecici->next!=NULL)
+		{
+			gecici=gecici->next;
+		}
+		gecici->next=s;
+	}	 
+}
+void Liste::yazdir(){
+	if(bosMu())
+	 	cout<<"Liste Bos ";
+	 else{
+	 	Eleman *gecici;
+	 	gecici = ilk;
+	 	while(gecici!=NULL)
+	 	{
+	 		cout<<" "<<gecici->sayi<<" ";
+	 		gecici=gecici->next;
+		 }
+	 }
+}
+int main()
+{
+	 Liste l;
+	 cout<<" "<<l.bosMu()<<endl;
+	 l.basaEkle(3);
+	 cout<<" "<<l.bosMu()<<endl;
+	 l.sonaEkle(4);
+	 l.basaEkle(2);
+	 l.yazdir();
+	 return 0;
+}
