@@ -41,15 +41,19 @@ bool Stack<T>::push(T item){
 }
 
 template<typename T>
-bool Stack<T>::pop(){
-	top--;
-} 
-
-template<typename T>
 void Stack<T>::screen(){
 	for(int i=0;i<top;i++)
 		cout<<Series[i]<<" ";
+	cout<<endl;
 }
+
+template<typename T>
+bool Stack<T>::pop(){
+	top--;
+	screen();
+} 
+
+
 
 
 int main(){
@@ -58,10 +62,11 @@ int main(){
 	 
 	 for(int i=0;i<10;i++)	
 	 	stackInt.push(i);
-	
+	 	
+	stackInt.screen();
 	stackInt.pop();
 	stackInt.pop(); 	
- 	stackInt.screen();
+ 
 	
 	return 0;
 }
