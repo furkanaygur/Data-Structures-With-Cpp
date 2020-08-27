@@ -12,7 +12,12 @@ void push(int data){ // Add data
 		d[top]=data;
 	}	
 }
-
+void screen(){
+	for(int i=0;i<top+1;i++){
+		cout<<d[i]<<" ";
+	}
+	cout<<endl;
+}
 void pop(){ //  Delete Top
 	if(top==-1)
 		cout<<"Stack empty";
@@ -20,18 +25,14 @@ void pop(){ //  Delete Top
 	{
 		top--;
 	}
+	screen();
 }
 
 int TopView(){ 
 	return d[top];
 }
 
-void screen(){
-	for(int i=0;i<top+1;i++){
-		cout<<d[i]<<" ";
-	}
-	cout<<endl;
-}
+
 int main (){
 	top=-1;
 	int num;
@@ -45,7 +46,7 @@ int main (){
 	
 	screen();
 	pop();
-	screen();
+	 
 	
 	return 0;
 }
