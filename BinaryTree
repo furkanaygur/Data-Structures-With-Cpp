@@ -1,0 +1,139 @@
+#include<iostream>
+using namespace std;
+
+
+class Tree {
+	public:
+		int data;
+		Tree *Left_Tree;
+		Tree *Right_Tree;
+	
+		Tree(int item);
+	 
+	 	void Add(int item);
+	 	void Delete(int item, Tree *parent=NULL);
+	 	Tree *Search(int item);
+	 	int minValue();
+};
+
+Tree::Tree(int data)
+{
+ Left_Tree=NULL;
+ Right_Tree=NULL;
+ this->data=data;	
+}
+
+void Tree::Add(int item) {
+	
+	if(data>item)  
+	{
+		if(Left_Tree)
+			return Left_Tree->Add(item);
+		Tree *nT = new Tree(item);
+		Left_Tree = nT;
+	}
+	else if(data<item){
+		if(Right_Tree)
+			return Right_Tree->Add(item);
+	 	Tree *nT = new Tree(item);
+		Right_Tree=nT;	
+	}
+}
+
+Tree* Tree::Search(int item) {
+	if(data>item){
+		if(Left_Tree)
+			return Left_Tree->Search(item);
+		else
+			return NULL;
+	}
+	else if (data<item){
+		if(Right_Tree)
+			return Right_Tree->Search(item);
+		else
+			return NULL;
+	}
+	return this;
+}
+
+int Tree::minValue(){
+	if(Left_Tree)
+		return Left_Tree->minValue();
+	return data;
+}
+
+void Tree::Delete(int item, Tree *parent){
+	if(data>item){
+		if(Left_Tree)
+			return Left_Tree->Delete(item,this);
+		else
+			return;
+		}
+	else if (data<item){
+		if(Right_Tree)
+			return Right_Tree->Delete(item,this);
+		else
+			return;
+	}
+	if((Left_Tree==NULL)&&(Right_Tree==NULL)){
+		if(parent->Left_Tree==this)
+			parent->Left_Tree=NULL;
+		else
+			parent->Right_Tree=NULL;
+	}
+	else if (Left_Tree&&Right_Tree){
+		data=Right_Tree->minValue();
+		return Right_Tree->Delete(data,this);		
+	}
+	else if(Right_Tree){
+		if(parent->Left_Tree==this)
+			parent->Left_Tree=Right_Tree;
+		else
+			parent->Right_Tree=Right_Tree;
+	}
+	else {
+		if(parent->Left_Tree=this)
+			parent->Left_Tree=Left_Tree;
+		else
+			parent->Right_Tree=Left_Tree;
+	}
+	delete this;
+}
+ 
+
+class Main {
+	public:
+		Tree *MainTree;
+		Main(){
+			MainTree=NULL;
+		}
+		void Add(int x){
+		if(MainTree)
+			return MainTree->Add(x);
+		MainTree = new Tree(x);
+		}
+		void Delete(int x){
+			if(MainTree)
+				return MainTree->Delete(x);
+			return;
+		}
+		Tree *Search(int x){
+			if(MainTree)
+				return MainTree->Search(x);
+			return NULL;
+		}
+};
+
+int main(){
+	
+	Main m;
+	m.Add(5);
+	m.Add(15);
+	m.Add(8);
+	m.Add(7);
+	m.Add(9); 
+	m.Add(13);
+	m.Add(12);
+ 
+	return 0;
+}
