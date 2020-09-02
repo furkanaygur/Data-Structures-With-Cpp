@@ -2,7 +2,7 @@
 #define Max 5
 using namespace std;
 int d[Max], top;
-
+ 
 void push(int data){ // Add data
 	if(top+1==Max)
 		cout<<"Stack full";
