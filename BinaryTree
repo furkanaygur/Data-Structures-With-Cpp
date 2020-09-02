@@ -125,7 +125,7 @@ class Main {
 };
 
 int main(){
-	
+	 
 	Main m;
 	m.Add(5);
 	m.Add(15);
