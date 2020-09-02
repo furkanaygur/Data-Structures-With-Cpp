@@ -29,7 +29,7 @@ template<typename T>
 Stack<T>::~Stack(){
 	delete[] Series;
 }
-
+ 
 template<typename T>
 bool Stack<T>::push(T item){
 	if(top>=max)
