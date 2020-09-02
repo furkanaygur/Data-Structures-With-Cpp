@@ -2,7 +2,7 @@
 using namespace std;
 
 // **************** Improved Version ********************
-
+ 
 template<typename T>
 void bubble (T *const array, int const num) {
 	for (int i = num;i>=0;i--){
