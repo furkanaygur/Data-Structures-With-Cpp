@@ -1,0 +1,119 @@
+#include<iostream>
+using namespace std;
+
+// **************** Improved Version ********************
+
+template<typename T>
+void bubble (T *const array, int const num) {
+	for (int i = num;i>=0;i--){
+		T max = array[0];
+		for(int j=1;j<=i;j++){ // j must start from 1 becasue array[0] = max 
+			if(array[j]<max){
+				array[j-1]=array[j];	
+			}
+			else{
+				array[j-1]=max;
+				max=array[j];
+			}
+		}
+		array[i]=max;
+	}
+}
+*/
+
+
+/*
+// ***************** More Improved Version ***********************
+template<typename T>
+void bubble (T *const array, int const num) {
+	for (int i = num;i>=0;i--){
+		T max = array[0];
+		bool sorted =true;
+		for(int j=1;j<=i;j++){ // j must start from 1 becasue array[0] = max 
+			if(array[j]<max){
+				array[j-1]=array[j];
+				sorted = false;
+			}
+			else{
+				array[j-1]=max;
+				max=array[j];
+			}
+		}
+		array[i]=max;
+		
+		if(sorted){
+		break;
+		}
+			
+	}
+}
+*/
+
+
+// **************** Lower and Upper Version ********************
+template<typename T>
+void bubble (T *const array, int const num) {
+	int lower =0;
+	int upper =num-1;
+	while (true){
+		int new_upper=lower;
+		for(int i=lower;i<upper;i++){
+			if(array[i]>array[i+1]){
+				T tmp = array[i];
+				array[i]=array[i+1];
+				array[i+1]=tmp; // You can use 'swap' func
+				new_upper=i;
+			}
+		}
+		upper = new_upper;
+		if(lower==upper){
+			break;
+		}
+		int new_lower=upper;
+		for(int j=upper;j>lower;j--){
+			if(array[j-1]>array[j]){
+				T tmp = array[j];
+				array[j]=array[j-1];
+				array[j-1]=tmp; // You can use 'swap' func
+				new_lower=j;
+			}
+		}
+		lower=new_lower;
+		if(lower==upper){
+			break;
+		}
+	}
+ 
+}
+
+
+
+
+int main(){
+	int array[10] = {11,23,51,24,64,41,35,65,46,32};
+	char Carray[11] = {'f','u','r','k','a','n','a','y','g','u','r'};
+	int number;
+	for(int i=0;i<10;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;
+	cout<<"Number : ";
+	cin>>number;
+	bubble(array,number);
+	for(int i=0;i<number;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;cout<<endl;
+	for(int i=0;i<11;i++){
+		cout<<Carray[i]<<" ";
+	}
+	cout<<endl;
+	cout<<"Number : ";
+	cin>>number;
+	bubble(Carray,number);
+	for(int i=0;i<number;i++){
+		cout<<Carray[i]<<" ";
+	}
+	
+	return 0;
+}
