@@ -42,23 +42,6 @@ void merge(T *array, int first, int mid, int last)
 }
 
 template<typename T>
-void insertionSort(T *array, int first, int last){
-	for(int k=first+1;k<last;++k){
-		T tmp = array[k];
-		for(int j=k;k>first;--j){
-			if(array[j-1]>tmp){
-				array[j]=array[j-1];
-			}
-			else{
-				array[j]= tmp;
-				break;
-			}
-		}
-		array[first]=tmp;
-	}
-}
-
-template<typename T>
 void mergeSort(T *array, int first, int last){
 	if(last>first){
 	
