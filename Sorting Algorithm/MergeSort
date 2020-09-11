@@ -1,0 +1,74 @@
+#include<iostream>
+using namespace std;
+
+template<typename T>
+void merge(T *array, int first, int mid, int last)
+{
+    int i, j, k, c[50];
+    i = first;
+    k = first;
+    j = mid + 1;
+    while (i <= mid && j <= last)
+    {
+        if (array[i] < array[j])
+        {
+            c[k] = array[i];
+            k++;
+            i++;
+        }
+        else
+        {
+            c[k] = array[j];
+            k++;
+            j++;
+        }
+    }
+    while (i <= mid)
+    {
+        c[k] = array[i];
+        k++;
+        i++;
+    }
+    while (j <= last)
+    {
+        c[k] = array[j];
+        k++;
+        j++;
+    }
+    for (i = first; i < k; i++)
+    {
+        array[i] = c[i];
+    }
+}
+
+template<typename T>
+void mergeSort(T *array, int first, int last){
+	if(last>first){
+	
+		int midpoint = (first+last)/2;
+			
+		mergeSort(array, first, midpoint);
+		mergeSort(array, midpoint+1,last);
+		merge(array,first, midpoint, last);
+	}
+  
+	return;
+}
+ 
+ 
+int main(){
+	int size = 7;
+	int array[size]={38,27,43,3,9,82,10};
+	int first = 0;
+	int last= size-1;
+	for(int i=0;i<7;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;
+	mergeSort(array, first ,last);
+	for(int i=0;i<7;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;
+	return 0;
+}
