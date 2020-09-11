@@ -1,0 +1,75 @@
+#include<iostream>
+using namespace std;
+
+/*
+// ******************* First Version ********************
+template<typename T>
+void Insertion(T *const array,int num)
+{
+	for(int i=1;i<num;i++){
+	 	for(int j=i;j>0;j--){
+	 		if(array[j-1]>array[j]){
+	 			swap(array[j-1],array[j]);
+			 }
+			 else{
+			 	break;
+			 }
+		 }
+	}
+}
+ 
+*/
+
+// ******************* Second Version ********************
+template<typename T>
+void Insertion(T *const array,int num)
+{
+
+	for(int i=1;i<num;i++){
+		T tmp = array[i];
+	 	for(int j=i;j>0;j--){
+	 		if(array[j-1]>tmp){
+	 			array[j] = array[j-1];
+			 }
+			 else{
+			 	array[j]=tmp;
+			 	break;
+			 }
+		 }
+		 if(array[0]>tmp){
+		 	array[0]=tmp;
+		 }
+	
+		
+	}
+	
+}
+ 
+int main(){
+	int array[10] = {11,23,51,24,64,41,35,65,46,32};
+	char Carray[11] = {'f','u','r','k','a','n','a','y','g','u','r'};
+	int number;
+	for(int i=0;i<10;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;
+	cout<<"Number : ";
+	cin>>number;
+	Insertion(array,number);
+	for(int i=0;i<number;i++){
+		cout<<array[i]<<" ";
+	}
+	cout<<endl;cout<<endl;
+	for(int i=0;i<11;i++){
+		cout<<Carray[i]<<" ";
+	}
+	cout<<endl;
+	cout<<"Number : ";
+	cin>>number;
+	Insertion(Carray,number);
+	for(int i=0;i<number;i++){
+		cout<<Carray[i]<<" ";
+	}
+	
+	return 0;
+}
